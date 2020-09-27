@@ -1,7 +1,10 @@
+//ver1
 //Di main program asumsi udah di isBujungSangkar
 //Ini aku buat dua cara : row reduction sama kofaktor
 //Di method detrowreduction aku pake method copyMatriks soalnya kalo cuma pake sama dengan matriks input-nya juga ikut tereduksi
 //ADT matriksnya aku asumsiin matrix sama jumlah baris/kolom beda(bukan satu tipe data)
+//ver2
+//Benerin cara cofactor det bukan integer lagi
 public class determinan{  
     static void cofactor(float M[][],int N, float temp[][], int a, int b){
         int i =0;
@@ -20,17 +23,17 @@ public class determinan{
     }
 
     public static float determinanCofactorWay(float M[][], int N){
-        if (N==1){
-            return (M[0][0]) ;
+        if (N==2){
+            return ((M[0][0] * M[1][1]) - (M[0][1] * M[1][0])) ;
         }
         else{
-            int det = 0;
+            float det = 0;
             float temp[][] = new float[N-1][N-1];
             int tanda = 1;
             for (int k=0; k < N; k++){
                 cofactor(M,N,temp,0,k);
-                det += (tanda * M[0][k] * determinanCofactorWay(temp,N-1));
-                tanda = -tanda;
+                det += tanda * M[0][k] * determinanCofactorWay(temp,N-1);
+                tanda = tanda * (-1);
             }
             return det;
         }
@@ -107,12 +110,11 @@ public class determinan{
     }
 
     public static void main(String[] args){
-        int N = 4;
-        float matrix[][] = {{1,-1,2,-1},{2,1,-2,-2},{-1,2,-4,1},{0,2,0,1}};
+        int N = 3;
+        float matrix[][] = {{2.0794f,8.0f,64.0f},{2.1973f,9.0f,81f},{2.2513f,9.5f,90.25f}};
         System.out.print(determinanReductionRowWay(matrix, N));
         System.out.print("\n");
         System.out.print(determinanCofactorWay(matrix, N));
-        System.out.print("\n");
-        cetakMatriks(matrix,N);
+        
     }
 }
