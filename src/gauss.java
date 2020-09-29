@@ -2,9 +2,10 @@ import java.util.Arrays;
 
 public class gauss {
     public static void main(String[] args) {
-        int kolMaks = 4; // banyak kolom
-        int barMaks = 3; // banyak barus
-        float[][] matrix = { { 2, 3, -1, 5 }, { 4, 4, -3, 3 }, { -2, 3, -1, 1 } }; // matriks masukan
+        int kolMaks = 5; // banyak kolom
+        int barMaks = 2; // banyak barus
+        float[][] matrix = { { 3, 1, 1, 1, 0 }, { 5, -1, 1, -1, 0 } }; // matriks
+        // masukan
         System.out.println("Matrix awal : " + Arrays.deepToString(matrix)); // mencetak matrix
 
         // Pembagian Matrix indeks ke 0
@@ -14,7 +15,7 @@ public class gauss {
         for (int i = 0; i < barMaks - 1; i++) {
             // Pembagian pada index pertama, jika index kolom dan baris sama dan hasilnya
             // tidak 1 maka akan dilakukan pembagian
-            if (matrix[i][i] != 1) {
+            if (matrix[i][i] != 1 && matrix[i][i] != 0) {
                 float headVariable = matrix[i][i];
                 for (int k = 0; k < kolMaks; k++) {
                     matrix[i][k] = matrix[i][k] / headVariable;
@@ -43,6 +44,13 @@ public class gauss {
 
             index++;
         }
+        if (matrix[barMaks - 1][barMaks - 1] != 1 && matrix[barMaks - 1][barMaks - 1] != 0) {
+            float headVariable = matrix[barMaks - 1][barMaks - 1];
+            for (int k = 0; k < kolMaks; k++) {
+                matrix[barMaks - 1][k] = matrix[barMaks - 1][k] / headVariable;
+            }
+        }
+
         System.out.println("Matrix akhir : " + Arrays.deepToString(matrix));
     }
 }
