@@ -8,6 +8,12 @@ public class Main {
 
         Scanner s = new Scanner(System.in);
 
+//        double[][] mm = MatriksFile.fileToMatriks(MatriksFile.inputFileName());
+//        Matriks.tulisMatriks(Gauss.splGaussJordan(mm));
+//        Gauss.solveSPLGaussJordan(Gauss.splGaussJordan(mm));
+//        String fn = "Gauss2A"
+//        MatriksFile.splGaussToFile(filename, solusiSPL);
+
         System.out.println("Tubes Algeo - 19033");
         System.out.println("******************************");
 
@@ -97,8 +103,13 @@ public class Main {
                             }
                             solusiMatriks = Inverse.solveSPLInverse(matriks);
                             System.out.println("Solusi sistem persamaan linear");
-                            for (int i = 0; i < solusiMatriks.length; ++i){
-                                System.out.println("x" + (i + 1) + " = " + ((float)  solusiMatriks[i][0]));
+
+                            if (Double.isNaN(solusiMatriks[0][0])){
+                                System.out.println("Tidak memiliki solusi unik");
+                            } else {
+                                for (int i = 0; i < solusiMatriks.length; ++i){
+                                    System.out.println("x" + (i + 1) + " = " + ((float)  solusiMatriks[i][0]));
+                                }
                             }
 
                             if (MatriksFile.saveToFile()){

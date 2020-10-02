@@ -110,15 +110,19 @@ public class Gauss {
         for (int i = 0; i < allZero.length; ++i){
             allZero[i] = true;
         }
+
+
         boolean haveSolution = true;
         //mengecek apakah tidak memiliki solusi
         for (int i = 0; i < nBrs; ++i){
 
+
+
             //mencari baris yang semua x nya nol tapi y nya tidak nol
             boolean xNol = true;
             for (int j = 0; j < nKol - 1; ++j){
+
                 if (arr[i][j] != 0){
-                    System.out.println("ok");
                     allZero[i] = false;
                     xNol = false;
                     break;
@@ -127,11 +131,13 @@ public class Gauss {
 
             if (xNol){
                 //check apakah y nya nol atau tidak
-                if (arr[i][nBrs - 1] != 0){
+                if (arr[i][nKol - 1] != 0){
                     haveSolution = false;
+
                     break;
                 }
             }
+
         }
 
         if (!haveSolution){ //kasus tidak punya solusi
@@ -160,7 +166,7 @@ public class Gauss {
 
             String[] solusi = new String[nKol - 1];
             for (int i = 0; i < solusi.length; ++i){
-                solusi[i] = "";
+                solusi[i] = "0.0 ";
             }
 
             char[] alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
@@ -187,7 +193,7 @@ public class Gauss {
                         }
                     }
 
-                    solusi[leadingEntry] = solusi[leadingEntry] + (arr[i][nKol - 1] != 0 ? ((arr[i][nKol - 1]) + " ") : "");
+                    solusi[leadingEntry] = (arr[i][nKol - 1] != 0 ? ((arr[i][nKol - 1]) + " ") : "0.0 ");
 
                     for (int j = leadingEntry + 1; j < (nKol - 1); ++j){
                         if (arr[i][j] != 0){
@@ -211,6 +217,7 @@ public class Gauss {
 
     public static String[] solveSPLGaussJordan(double[][] arr){
         //input matriks eselon baris tereduksi
+        arr = splGaussJordan(arr);
         int nBrs = arr.length;
         int nKol = arr[0].length;
         String[] solutionFinal = new String[nKol - 1];
@@ -226,7 +233,6 @@ public class Gauss {
             boolean xNol = true;
             for (int j = 0; j < nKol - 1; ++j){
                 if (arr[i][j] != 0){
-                    System.out.println("ok");
                     allZero[i] = false;
                     xNol = false;
                     break;
@@ -235,7 +241,7 @@ public class Gauss {
 
             if (xNol){
                 //check apakah y nya nol atau tidak
-                if (arr[i][nBrs - 1] != 0){
+                if (arr[i][nKol - 1] != 0){
                     haveSolution = false;
                     break;
                 }
@@ -268,7 +274,7 @@ public class Gauss {
 
             String[] solusi = new String[nKol - 1];
             for (int i = 0; i < solusi.length; ++i){
-                solusi[i] = "";
+                solusi[i] = "0.0 ";
             }
 
             char[] alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
@@ -294,8 +300,7 @@ public class Gauss {
                             break;
                         }
                     }
-
-                    solusi[leadingEntry] = solusi[leadingEntry] + (arr[i][nKol - 1] != 0 ? ((arr[i][nKol - 1]) + " ") : "");
+                    solusi[leadingEntry] = (arr[i][nKol - 1] != 0 ? ((arr[i][nKol - 1]) + " ") : "0.0 ");
 
                     for (int j = leadingEntry + 1; j < (nKol - 1); ++j){
                         if (arr[i][j] != 0){

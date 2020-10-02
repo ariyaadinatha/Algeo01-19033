@@ -201,7 +201,7 @@ public class MatriksFile {
     public static void splInverseToFile(String filename, double[][] arr){
         try {
             FileWriter writer = new FileWriter(currDir() + "\\" + filename);
-            if (arr == null){
+            if (Double.isNaN(arr[0][0])){
                 writer.write("Matriks tidak memiliki solusi unik");
             } else {
                 for (int i = 0; i < arr.length; ++i){
